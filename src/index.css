@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Wave Background Theme - Deep Blue & Bright Cyan */
+    --background: 220 20% 10%;
+    --foreground: 210 40% 98%;
+
+    --card: 220 20% 12%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 220 20% 12%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Bright Cyan Primary (from wave) */
+    --primary: 190 80% 55%;
+    --primary-foreground: 220 20% 10%;
+
+    /* Secondary */
+    --secondary: 220 15% 20%;
+    --secondary-foreground: 210 40% 98%;
+
+    /* Muted */
+    --muted: 220 15% 25%;
+    --muted-foreground: 210 20% 70%;
+
+    /* Bright Yellow Accent (from wave) */
+    --accent: 50 95% 65%;
+    --accent-foreground: 220 20% 10%;
+
+    /* Additional accent color */
+    --accent-2: 280 70% 65%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 20% 25%;
+    --input: 220 20% 20%;
+    --ring: 190 80% 55%;
+
+    --radius: 1rem;
+
+    /* Glass effect tokens */
+    --glass-bg: 220 20% 98% / 0.08;
+    --glass-border: 210 40% 98% / 0.15;
+    --glass-blur: 24px;
+
+    /* Gradients matching wave colors */
+    --gradient-primary: linear-gradient(135deg, hsl(190 80% 45%), hsl(190 80% 65%));
+    --gradient-accent: linear-gradient(135deg, hsl(190 80% 55%), hsl(50 95% 65%));
+    --gradient-hero: linear-gradient(180deg, hsl(220 20% 10%) 0%, hsl(200 70% 20%) 100%);
+
+    /* Shadows with bright glow */
+    --shadow-glow: 0 0 50px hsl(190 80% 55% / 0.4);
+    --shadow-card: 0 10px 40px -10px hsl(0 0% 0% / 0.6);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Glass morphism utilities */
+  .glass {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .glass-card {
+    @apply glass rounded-2xl p-6 shadow-lg;
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  /* Smooth transitions */
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Glow effects */
+  .glow-primary {
+    box-shadow: 0 0 40px hsl(var(--primary) / 0.3);
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 30px hsl(var(--accent) / 0.4);
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+@layer utilities {
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.5s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
