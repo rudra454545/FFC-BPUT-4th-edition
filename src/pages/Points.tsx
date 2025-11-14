@@ -19,8 +19,8 @@ import { ScrollingNavigation } from "@/components/ScrollingNavigation";
 const Points = () => {
   const teamsData = [
     { rank: 1, logo: eternalVoid, name: "Eternal Void", booyah: 4, killPoints: 61, positionPoints: 57, totalPoints: 118 },
-    { rank: 2, logo: team444, name: "Team 444", booyah: 1, killPoints: 76, positionPoints: 41, totalPoints: 118 },
-    { rank: 3, logo: teamBg, name: "Team BG", booyah: 1, killPoints: 59, positionPoints: 45, totalPoints: 105 },
+    { rank: 2, logo: team444, name: "Team 444", booyah: 1, killPoints: 76, positionPoints: 42, totalPoints: 119 },
+    { rank: 3, logo: teamBg, name: "Team BG", booyah: 1, killPoints: 59, positionPoints: 46, totalPoints: 106 },
     { rank: 4, logo: utkalaEsports, name: "Utkala Esports", booyah: 0, killPoints: 50, positionPoints: 39, totalPoints: 89 },
     { rank: 5, logo: cosmicEsports, name: "Cosmic Esports", booyah: 0, killPoints: 43, positionPoints: 34, totalPoints: 77 },
     { rank: 6, logo: xForce, name: "X-Force", booyah: 0, killPoints: 34, positionPoints: 24, totalPoints: 58 },
