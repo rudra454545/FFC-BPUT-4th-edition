@@ -17,20 +17,36 @@ import fantastic4 from "@/assets/teams/fantastic-4.jpg";
 import { ScrollingNavigation } from "@/components/ScrollingNavigation";
 
 const Points = () => {
-  const teamsData = [
-    { rank: 1, logo: eternalVoid, name: "Eternal Void", booyah: 4, killPoints: 61, positionPoints: 57, totalPoints: 118 },
-    { rank: 2, logo: team444, name: "Team 444", booyah: 1, killPoints: 76, positionPoints: 42, totalPoints: 118 },
-    { rank: 3, logo: teamBg, name: "Team BG", booyah: 1, killPoints: 59, positionPoints: 46, totalPoints: 105 },
-    { rank: 4, logo: utkalaEsports, name: "Utkala Esports", booyah: 0, killPoints: 50, positionPoints: 39, totalPoints: 89 },
-    { rank: 5, logo: cosmicEsports, name: "Cosmic Esports", booyah: 0, killPoints: 43, positionPoints: 34, totalPoints: 77 },
-    { rank: 6, logo: xForce, name: "X-Force", booyah: 0, killPoints: 34, positionPoints: 24, totalPoints: 58 },
-    { rank: 7, logo: royals, name: "Royals", booyah: 0, killPoints: 30, positionPoints: 24, totalPoints: 54 },
-    { rank: 8, logo: fantastic4, name: "Fantastic 4", booyah: 0, killPoints: 19, positionPoints: 29, totalPoints: 48 },
-    { rank: 9, logo: teamEvious, name: "Team Evious", booyah: 0, killPoints: 22, positionPoints: 20, totalPoints: 42 },
-    { rank: 10, logo: immortalRoar, name: "Immortal Roar", booyah: 0, killPoints: 15, positionPoints: 12, totalPoints: 27 },
-    { rank: 11, logo: teamForce, name: "Team Force", booyah: 0, killPoints: 7, positionPoints: 10, totalPoints: 17 },
-    { rank: 12, logo: teamMarco, name: "Team Marco", booyah: 0, killPoints: 5, positionPoints: 4, totalPoints: 9 },
+  const rawTeamsData = [
+    { logo: eternalVoid, name: "Eternal Void", booyah: 4, killPoints: 61, positionPoints: 57 },
+    { logo: team444, name: "Team 444", booyah: 1, killPoints: 76, positionPoints: 42 },
+    { logo: teamBg, name: "Team BG", booyah: 1, killPoints: 59, positionPoints: 46 },
+    { logo: utkalaEsports, name: "Utkala Esports", booyah: 0, killPoints: 50, positionPoints: 39 },
+    { logo: cosmicEsports, name: "Cosmic Esports", booyah: 0, killPoints: 43, positionPoints: 34 },
+    { logo: xForce, name: "X-Force", booyah: 0, killPoints: 34, positionPoints: 24 },
+    { logo: royals, name: "Royals", booyah: 0, killPoints: 30, positionPoints: 24 },
+    { logo: fantastic4, name: "Fantastic 4", booyah: 0, killPoints: 19, positionPoints: 29 },
+    { logo: teamEvious, name: "Team Evious", booyah: 0, killPoints: 22, positionPoints: 20 },
+    { logo: immortalRoar, name: "Immortal Roar", booyah: 0, killPoints: 15, positionPoints: 12 },
+    { logo: teamForce, name: "Team Force", booyah: 0, killPoints: 7, positionPoints: 10 },
+    { logo: teamMarco, name: "Team Marco", booyah: 0, killPoints: 5, positionPoints: 4 },
   ];
+
+  const teamsData = rawTeamsData
+    .map((team, index) => ({
+      ...team,
+      rank: index + 1,
+      totalPoints: team.killPoints + team.positionPoints,
+    }))
+    .sort((a, b) => {
+      const aTotal = a.killPoints + a.positionPoints;
+      const bTotal = b.killPoints + b.positionPoints;
+      if (aTotal !== bTotal) return bTotal - aTotal;
+      if (a.booyah !== b.booyah) return b.booyah - a.booyah;
+      if (a.positionPoints !== b.positionPoints) return b.positionPoints - a.positionPoints;
+      return b.killPoints - a.killPoints;
+    })
+    .map((team, index) => ({ ...team, rank: index + 1 }));
 
   const topKillTeams = [
     { name: "Team 444", kills: 76, logo: team444 },
